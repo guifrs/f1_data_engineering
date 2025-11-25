@@ -4,4 +4,11 @@ version = "0.1.0"
 description = "Personal project to train data engineering skills"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "fastf1>=3.6.1",
+    "pandas>=2.3.3",
+    "pyarrow>=22.0.0",
+    "pyspark>=4.0.1",
+    "rich>=14.2.0",
+    "ruff>=0.14.6",
+]

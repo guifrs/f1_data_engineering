@@ -9,5 +9,23 @@
         "**/*tsconfig.json": true,
         ".cache": true,
         "retool.config.json": true
+    },
+
+    // Ruff como formatador padrão para Python
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    
+    // Ruff como formatador para notebooks
+    "[jupyter]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    
+    // Formatar ao salvar
+    "editor.formatOnSave": true,
+    
+    // Para notebooks, formatar todas as células
+    "notebook.formatOnSave.enabled": true
     }
-}
+
+
