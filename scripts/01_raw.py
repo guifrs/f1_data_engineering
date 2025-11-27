@@ -25,6 +25,7 @@ logger = logging.getLogger("f1-loader")
 for name in ("fastf1", "fastf1.fastf1", "fastf1.api", "fastf1.req", "fastf1.core"):
     logging.getLogger(name).setLevel(logging.ERROR)
 
+
 @dataclass
 class Loader:
     """
