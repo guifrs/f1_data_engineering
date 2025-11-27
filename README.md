@@ -7,8 +7,9 @@ In simple terms:
 > **The model evaluates how closely each driver's performance resembles that of past World Champions, producing a score between 0 and 1 that represents their championship likelihood at that moment.**
 
 
-![Alt Text](figures\future_bar_race.gif)
-![Alt Text](figures\future_top5.png)
+![Alt Text](figures/future_bar_race.gif)
+
+![Alt Text](figures/future_top5.png)
 
 
 
