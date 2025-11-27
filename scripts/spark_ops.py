@@ -3,8 +3,6 @@ from pyspark.sql import DataFrame, SparkSession
 from delta import DeltaTable, configure_spark_with_delta_pip
 from rich.progress import track
 from pathlib import Path
-from typing import Iterable
-
 
 def read_query(path: str) -> str:
     """
@@ -175,27 +173,24 @@ class IngestorFS:
             .save(f"data/silver/{self.table}")
         )
 
-    def exec(self, iters: Iterable[str]) -> None:
+    def exec(self, iters, compact: bool = False) -> None:
         """
         Run the ingestion pipeline for multiple reference dates.
-
-        For each date in `iters`, the method:
-          1. Loads data using the SQL template.
-          2. Writes the data into the Delta table, replacing that date slice.
-
-        After processing all dates, it:
-          3. Reads the complete table.
-          4. Rewrites it with a single file per partition (coalesce(1)).
-          5. Runs VACUUM to clean old files.
 
         Parameters
         ----------
         iters : Iterable[str]
             Iterable of reference dates (e.g., list of 'YYYY-MM-DD' strings).
+        compact : bool, optional
+            If True, rewrites the entire table (coalesce(1)) and runs VACUUM
+            after processing all dates. Default is False to avoid heavy jobs.
         """
         for ref_date in track(iters, description="Running ingestion..."):
             df = self.load(ref_date)
             self.save(df, ref_date)
+
+        if not compact:
+            return
 
         (
             self.spark.read.format("delta")

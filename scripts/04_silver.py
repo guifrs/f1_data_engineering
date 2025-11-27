@@ -46,7 +46,7 @@ def main() -> None:
     spark: SparkSession = spark_ops.new_spark_session()
 
     spark_ops.create_view_from_path("data/bronze/results", spark)
-    spark_ops.create_view_from_path("data/silver/fs_drivers", spark)
+    spark_ops.create_view_from_path("data/silver/feature_store_drivers", spark)
 
     # Ensure `champions` table exists, creating it if necessary.
     try:

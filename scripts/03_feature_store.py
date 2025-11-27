@@ -38,7 +38,7 @@ def exec_range(query_path: str, start: str, stop: str, spark: SparkSession) -> N
     )
 
     ingestor = spark_ops.IngestorFS(query_path, spark)
-    ingestor.exec(dates)
+    ingestor.exec(dates, compact=False)
 
 
 def main() -> None:
